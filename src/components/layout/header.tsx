@@ -1,27 +1,29 @@
 import React, { ComponentProps } from "react";
 import Button from "../ui/Button"
+import LogoHover from "../ui/logohover"
 type Props = ComponentProps<"header"> &{
 
 };
 const Header= ({ ...rest}: Props) => {
     return (
         <header
-            className="w-full bg-white shadow-md py-4 px-8 flex justify-between items-center"
+            className="w-full bg-gray-800 shadow-md py-4 px-8 flex justify-between items-center"
         >
-            <h1 className="text-3xl font-bold text-gray-800 tracking-wide">
+            <LogoHover />
+            <h1 className="text-3xl font-bold text-purple-400 tracking-wide">
                 7 RAZONES
             </h1>
-                        
-            <nav className="space-x-6">
-                <a href="#" className="text-gray-600 hover:text-black transition">
+
+            <nav className="flex space-x-6">
+                <Button as="a" href="#">
                     Inicio
-                </a>
-                <a href="#" className="text-gray-600 hover:text-black transition">
+                </Button>
+                <Button as="a" href="#">
                     Servicios
-                </a>
-                <a href="#" className="text-gray-600 hover:text-black transition">
+                </Button>
+                <Button as="a" href="#">
                     Contacto
-                </a>
+                </Button>
             </nav>
         </header>
     );
