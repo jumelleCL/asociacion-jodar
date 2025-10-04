@@ -2,12 +2,12 @@ import React, { ComponentProps } from "react";
 type Props = ComponentProps<"div"> &{
   
 };
-const HomePage= ({ ...rest}: Props) => {
+const AnimalPage= ({ ...rest}: Props) => {
   return (
-      <div {...rest}></div>
+      <div>oli uwu</div>
   );
 };
 
 
 
-export default HomePage;
+export default AnimalPage;
