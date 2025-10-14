@@ -14,23 +14,26 @@ const Header= ({ ...rest}: Props) => {
 
     return (
         <header
-            className="w-full bg-[#BC52D9] shadow-md py-4 px-8 flex justify-between items-center"
-        >
-            <LogoHover />
-            <h1 className="text-3xl font-bold text-[#E7BDF2] tracking-wide">
-                7 RAZONES
-            </h1>
+            className="w-full bg-white shadow-black py-4 px-8 flex justify-between items-center" title={"logo"} onClick={() => router.push("/")}>
+            <div className="mx-10 flex items-center">
+                <LogoHover />
+                <h1 className="text-3xl font-bold text-[#805BA6] tracking-wide">
+                    7 RAZONES
+                </h1>
+            </div>
             <Bar>
                 <button className="button" title="inicio" onClick={() => router.push("/admin/dashboard")}>
                     <FaHome className="icon" />
+                    <span className="title">Inicio</span>
                 </button>
                 <button className="button" title="buscar" onClick={() => router.push("/animal")}>
                     <FaSearch className="icon" />
+                    <span className="title">Buscar</span>
                 </button>
                 <button className="button" title="contact" onClick={() => router.push("/contact")}>
                     <GrContact className="icon" />
+                    <span className="title">Contacto</span>
                 </button>
-                
             </Bar>
         </header>
     );
