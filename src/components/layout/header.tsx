@@ -14,7 +14,7 @@ const Header= ({ ...rest}: Props) => {
 
     return (
         <header
-            className="w-full bg-white shadow-black py-4 px-8 flex justify-between items-center" title={"logo"} onClick={() => router.push("/")}>
+            className="w-full bg-white shadow-2xl shadow-[#805BA6] py-4 px-8 flex justify-between items-center relative z-10" title={"logo"} onClick={() => router.push("/")}>
             <div className="mx-10 flex items-center">
                 <LogoHover />
                 <h1 className="text-3xl font-bold text-[#805BA6] tracking-wide">

@@ -12,7 +12,7 @@ type Props = ComponentProps<"footer"> &{
 
 const Footer = () => {
     return (
-        <footer className="w-full bg-[#F2F2F2] py-6 px-8 mt-10">
+        <footer className="w-full bg-[#F2F2F2] py-6 px-8 shadow-none [box-shadow:0px_-10px_25px_-5px_#805BA6] z-20">
             <div className="flex flex-col md:flex-row justify-between items-center">
                 <p className="text-[#805BA6] text-sm mb-4 md:mb-0">
                     © {new Date().getFullYear()} Todos los derechos reservados.
