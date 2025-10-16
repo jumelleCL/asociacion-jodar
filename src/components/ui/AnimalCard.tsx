@@ -36,7 +36,7 @@ const AnimalCard = ({title, description, children}: SummaryProps) => {
 
 const StyledWrapper = styled.div`
     .card {
-        width: 100%;
+        width: 240px;
         min-height: 300px;
         height: 100%;
         border-radius: 20px;
@@ -48,6 +48,29 @@ const StyledWrapper = styled.div`
         overflow: visible;
         aspect-ratio: 1;
         box-sizing: border-box;
+    }
+
+    @media (max-width: 1024px) {
+        .card {
+            width: 200px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .card {
+            width: 160px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .card {
+            width: 160px    ;
+        }
+    }
+    @media (max-width: 420px) {
+        .card {
+            width: 120px    ;
+        }
     }
 
     .card-description {

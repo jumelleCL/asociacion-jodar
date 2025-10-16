@@ -27,7 +27,7 @@ export default function Home() {
                     rout="/admin/nosotros"
                 >
                     <div className="flex flex-col space-y-5">
-                        <div className="grid grid-flow-col gap-10 mx-10 my-20 max-w-full">
+                        <div className="flex flex-wrap gap-10 mx-10 my-20 max-w-full">
                             <AnimalCard />
                             <AnimalCard />
                             <AnimalCard />
