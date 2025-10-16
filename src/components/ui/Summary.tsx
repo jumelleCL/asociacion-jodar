@@ -1,14 +1,39 @@
 "use client";
 
-import React, { ComponentProps } from "react";
+import React, {ComponentProps, ReactNode} from "react";
 import styled from "styled-components";
+import {useRouter} from "next/navigation";
+import {FaPlus} from "react-icons/fa";
 
-type Props = ComponentProps<"bar"> & { children?: React.ReactNode };
-const Bar = ({children, ...rest}: Props) => {
+type SummaryProps = {
+    title: string;
+    description: string;
+    children: ReactNode;
+    rout: string;
+};
+
+const Summary = ({title, description, children}: SummaryProps) => {
+    const router = useRouter();
     return (
         <StyledWrapper>
-            <div className="button-container">
-               {children}
+            <div className="space-y-4 pb-4">
+                <h1 className="bg-white rounded-md shadow-sm text-black text-2xl font-bold px-4 py-2">
+                    {title}
+                </h1>
+                <div className="bg-white rounded-md shadow-sm p-4">
+                    <p className="text-black text-base mb-4">
+                        {description}
+                    </p>
+                    {children}
+                    <div className="flex justify-end">
+                        <div className="button-container">
+                            <button className="button" title="inicio" onClick={() => router.push({rout})}>
+                                <FaPlus className="icon" />
+                                <span className="title">Saber Más</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </StyledWrapper>
     );
@@ -28,52 +53,38 @@ const StyledWrapper = styled.div`
         padding: 5px;
         gap: 8px;
     }
-
+    
     .button {
         outline: 0 !important;
         border: 0 !important;
-        width: 40px;
-        height: 40px;
         border-radius: 20px;
         background-color: transparent;
         display: flex;
         align-items: center;
         justify-content: flex-start;
         color: #F2F2F2;
-        transition: width 0.3s ease-in-out, background-color 0.3s ease-in-out;
         cursor: pointer;
         position: relative;
         overflow: hidden;
         padding: 0 10px;
     }
-
     .button:hover {
         width: 130px;
         background-color: rgba(255, 255, 255, 0.1);
     }
-
     .icon {
         font-size: 20px;
         flex-shrink: 0;
         margin-right: 10px;
         z-index: 1;
     }
-
     .title {
         display: inline-block;
         white-space: nowrap;
-        transform: translateX(100%);
-        opacity: 0;
-        transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
         z-index: 1;
         font-size: 15px;
         font-family: "Arial", sans-serif;
     }
-
-    .button:hover .title {
-        transform: translateX(0);
-        opacity: 1;
-    }
 `
 
-export default Bar;
+export default Summary;
