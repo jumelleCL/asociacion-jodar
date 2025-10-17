@@ -1,15 +1,23 @@
 "use client";
 
 import Summary from "../components/ui/Summary";
-import Bar from "../components/ui/Bar"
-import React, {useEffect} from "react";
-import {FaPlus} from "react-icons/fa";
+import React, {useEffect, useRef} from "react";
 import {useRouter} from "next/navigation";
-import AnimalCard from "../components/ui/AnimalCard";
-
-
+import AnimalGrid from "@/components/Java/CountCards";
 export default function Home() {
     const router = useRouter();
+
+    const animals = [
+        { id: 1, name: "Perro" },
+        { id: 2, name: "Gato" },
+        { id: 3, name: "Conejo" },
+        { id: 4, name: "Tigre" },
+        { id: 5, name: "León" },
+        { id: 6, name: "Elefante" },
+        { id: 7, name: "Cebra" },
+        { id: 8, name: "Jirafa" },
+    ];
+
     return (
         <div>
             <main className="flex min-h-1/2 flex-col items-right justify-between p-24 bg-[#F6F1FB]">
@@ -26,14 +34,10 @@ export default function Home() {
                     description="Sobre nosotros resumen"
                     rout="/admin/nosotros"
                 >
-                    <div className="flex flex-col space-y-5">
-                        <div className="flex flex-wrap gap-10 mx-10 my-20 max-w-full">
-                            <AnimalCard />
-                            <AnimalCard />
-                            <AnimalCard />
-                            <AnimalCard />
-                        </div>
-                    </div></Summary>
+                    <div className="flex justify-start">
+                        <AnimalGrid animals={animals}/>
+                    </div>
+                </Summary>
 
                 <div className="border-b border-gray-300 mb-6"></div>
 
