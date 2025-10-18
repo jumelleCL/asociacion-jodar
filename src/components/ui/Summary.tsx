@@ -8,7 +8,7 @@ import {FaPlus} from "react-icons/fa";
 type SummaryProps = {
     title: string;
     description: string;
-    children: ReactNode;
+    children?: ReactNode;
     rout: string;
 };
 

@@ -22,7 +22,6 @@ export default function Home() {
                             name={"gustabo"}
                             description={"Aloooo"}
                             isDisponible={true} 
-                            children={undefined} 
                             url={""}                        
                         >                           
                         </AnimalCard>

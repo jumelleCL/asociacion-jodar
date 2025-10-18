@@ -8,7 +8,7 @@ type AnimalProps = {
     name: string;
     description: string;
     isDisponible: boolean;
-    children: ReactNode;
+    children?: ReactNode;
     url: string;
 };
 
