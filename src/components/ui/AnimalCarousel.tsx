@@ -9,6 +9,24 @@ const AnimalCarousel = () => {
     const [translateX, setTranslateX] = useState(0);
     const cardWrapperRef = useRef(null);
     const [cardSize, setCardSize] = useState({width: 320, height: 320});
+    const quantity = 9;
+
+    const renderCards = () => {
+        const cards = Array.from({length: quantity}, (_, i) => (
+            <div key={`card-${i}`} className="item" style={{'--position': i + 1}}>
+                <div ref={i === 0 ? cardWrapperRef : null}>
+                    <AnimalCard/>
+                </div>
+            </div>
+        ));
+        
+        return [
+            ...cards.slice(-3),
+            ...cards,
+            ...cards.slice(0, 3),
+        ];
+    };
+        
 
     const handleMouseDown = (e) => {
         setIsDragging(true);
@@ -18,15 +36,39 @@ const AnimalCarousel = () => {
     const handleMouseMove = (e) => {
         if (!isDragging) return;
         const delta = e.clientX - startX;
-        setTranslateX((prev) => prev + delta);
+        const newTranslateX = translateX + delta;
+        setTranslateX(newTranslateX);
         setStartX(e.clientX);
+
         if (listRef.current) {
-            listRef.current.style.transform = `translateX(${translateX}px)`;
+            listRef.current.style.transition = 'none';
+            listRef.current.style.transform = `translateX(${newTranslateX}px)`;
         }
     };
 
     const handleMouseUp = () => {
         setIsDragging(false);
+
+        const maxIndex = quantity + 3;
+        const minIndex = 2;
+
+        const currentIndex = Math.round(-translateX / cardSize.width);
+
+        if (currentIndex >= maxIndex) {
+            const resetX = -cardSize.width * 3;
+            setTranslateX(resetX);
+            if (listRef.current) {
+                listRef.current.style.transition = 'none';
+                listRef.current.style.transform = `translateX(${resetX}px)`;
+            }
+        } else if (currentIndex <= minIndex - 1) {
+            const resetX = -cardSize.width * (quantity + 2);
+            setTranslateX(resetX);
+            if (listRef.current) {
+                listRef.current.style.transition = 'none';
+                listRef.current.style.transform = `translateX(${resetX}px)`;
+            }
+        }
     };
 
     const handleMouseLeave = () => {
@@ -35,6 +77,14 @@ const AnimalCarousel = () => {
     
     useEffect(() => {
         if (!cardWrapperRef.current) return;
+        const list = listRef.current;
+        if (!list) return;
+        
+        const totalWidth = cardSize.width * (quantity + 6);
+        const visibleWidth = cardSize.width * quantity;
+        
+        list.style.transform = `translateX(-${cardSize.width * 3}px)`;
+        setTranslateX(-cardSize.width * 3);
         
         const card = cardWrapperRef.current.querySelector('.card');
         if (!card) return;
@@ -48,9 +98,7 @@ const AnimalCarousel = () => {
         
         return() => observer.disconnect();
         
-    }, []);
-    
-    const quantity = 9;
+    }, [cardSize.width, quantity]);
 
     return (
         <StyledWrapper>
@@ -89,8 +137,8 @@ const AnimalCarousel = () => {
 
 const StyledWrapper = styled.div`
     .slider {
-        width: 100%;
-        height: var(--height);
+        width: calc(var(--width) * var(--quantity));
+        height: calc(var(--height) * 1.5) ;
         overflow: hidden;
         cursor: grab;
         user-select: none;
@@ -98,7 +146,7 @@ const StyledWrapper = styled.div`
 
     .slider .list {
         display: flex;
-        width: 100%;
+        width: 120%;
         min-width: calc(var(--width) * var(--quantity));
         position: relative;
     }

@@ -9,9 +9,10 @@ type AnimalProps = {
     description: string;
     isDisponible: boolean;
     children: ReactNode;
+    url: string;
 };
 
-const AnimalCard = ({title, description, isDisponible, url}: SummaryProps) => {
+const AnimalCard = ({name, description, isDisponible, children, url}: AnimalProps) => {
     const router = useRouter();
     return (
         <StyledWrapper>
@@ -22,7 +23,7 @@ const AnimalCard = ({title, description, isDisponible, url}: SummaryProps) => {
                             <div className="circle">
                                 <span className={`${isDisponible ? 'disponible':'nodisponible'} box`}></span>
                             </div>
-                            <p className="text-title">{title || "Gatito" }</p>
+                            <p className="text-title">{name || "Gatito" }</p>
                         </div>
                         <p className="text-body">{description || "Hola soy un gato" }</p>
                     </div>

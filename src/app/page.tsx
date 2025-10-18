@@ -14,9 +14,20 @@ export default function Home() {
             <main className="flex min-h-1/2 flex-col items-right justify-between p-24 bg-[#F6F1FB]">
                 <Summary
                     title="CONTACTO"
-                    description="¿Tenés preguntas? ¡Contactanos!"
+                    description="¿Tenés preguntas? ¡Contáctanos!"
                     rout="/admin/dashboard"
-                ></Summary>
+                >
+                    <div className="flex overflow-y-visible gap-6 justify-center my-50 mx-20">
+                        <AnimalCard
+                            name={"gustabo"}
+                            description={"Aloooo"}
+                            isDisponible={true} 
+                            children={undefined} 
+                            url={""}                        
+                        >                           
+                        </AnimalCard>
+                    </div>
+                </Summary>
                 
                 <div className="border-b border-gray-300 mb-6"></div>
 
@@ -25,9 +36,8 @@ export default function Home() {
                     description="Sobre nosotros resumen"
                     rout="/admin/nosotros"
                 >
-                    <div className="flex overflow-hidden gap-6 justify-center my-10">
+                    <div className="flex overflow-y-visible overflow-x-hidden gap-6 mt-10">
                         <AnimalCarousel>
-                            
                         </AnimalCarousel>
                     </div>
                 </Summary>
