@@ -3,32 +3,33 @@
 import React, {ComponentProps, ReactNode} from "react";
 import styled from "styled-components";
 import {useRouter} from "next/navigation";
-import {FaPlus} from "react-icons/fa";
 
 type AnimalProps = {
     name: string;
     description: string;
+    isDisponible: boolean;
     children: ReactNode;
 };
 
-const AnimalCard = ({title, description, children}: SummaryProps) => {
+const AnimalCard = ({title, description, isDisponible, url}: SummaryProps) => {
     const router = useRouter();
     return (
         <StyledWrapper>
-            <div className="card">
-                <div className="card-description">
-                    <div className="title-row">
-                        <div className="circle">
-                            <span className="disponible box"></span>
+            <div className="col-6 col-md-2">
+                <div className="card">
+                    <div className="card-description">
+                        <div className="title-row">
+                            <div className="circle">
+                                <span className={`${isDisponible ? 'disponible':'nodisponible'} box`}></span>
+                            </div>
+                            <p className="text-title">{title || "Gatito" }</p>
                         </div>
-                        <p className="text-title">Card title</p>
+                        <p className="text-body">{description || "Hola soy un gato" }</p>
                     </div>
-                    <p className="text-body">Here are the details of the card</p>
-                </div>
-
-                <button className="card-button" onClick={() => router.push("/admin/dashboard")}>
+                    <button className="card-button" onClick={() => router.push("/admin/dashboard")}>
                     Saber Más
-                </button>
+                    </button>
+                </div>
             </div>
         </StyledWrapper>
     );
@@ -36,7 +37,7 @@ const AnimalCard = ({title, description, children}: SummaryProps) => {
 
 const StyledWrapper = styled.div`
     .card {
-        width: 200px;
+        width: 300px;
         border-radius: 20px;
         background: #f5f5f5;
         position: relative;
@@ -47,7 +48,31 @@ const StyledWrapper = styled.div`
         aspect-ratio: 1;
         box-sizing: border-box;
     }
-    
+
+    @media (max-width: 1024px) {
+        .card {
+            width: 200px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .card {
+            width: 160px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .card {
+            width: 160px    ;
+        }
+    }
+    @media (max-width: 420px) {
+        .card {
+            width: 120px    ;
+        }
+    }
+
+
     .card-description {
         display: flex;
         flex-direction: column;

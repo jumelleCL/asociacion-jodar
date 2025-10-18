@@ -1,23 +1,14 @@
 "use client";
 
 import Summary from "../components/ui/Summary";
-import React, {useEffect, useRef} from "react";
+import React from "react";
 import {useRouter} from "next/navigation";
-import AnimalGrid from "@/components/Java/CountCards";
+import AnimalCarousel from "../components/ui/AnimalCarousel";
+import AnimalCard from "../components/ui/AnimalCard";
+
 export default function Home() {
     const router = useRouter();
-
-    const animals = [
-        { id: 1, name: "Perro" },
-        { id: 2, name: "Gato" },
-        { id: 3, name: "Conejo" },
-        { id: 4, name: "Tigre" },
-        { id: 5, name: "León" },
-        { id: 6, name: "Elefante" },
-        { id: 7, name: "Cebra" },
-        { id: 8, name: "Jirafa" },
-    ];
-
+    
     return (
         <div>
             <main className="flex min-h-1/2 flex-col items-right justify-between p-24 bg-[#F6F1FB]">
@@ -34,8 +25,10 @@ export default function Home() {
                     description="Sobre nosotros resumen"
                     rout="/admin/nosotros"
                 >
-                    <div className="flex justify-start">
-                        <AnimalGrid animals={animals}/>
+                    <div className="flex overflow-hidden gap-6 justify-center my-10">
+                        <AnimalCarousel>
+                            
+                        </AnimalCarousel>
                     </div>
                 </Summary>
 
@@ -50,3 +43,5 @@ export default function Home() {
         </div>
     );
 }
+
+
