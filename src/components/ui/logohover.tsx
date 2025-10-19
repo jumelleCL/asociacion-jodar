@@ -2,7 +2,7 @@
 import React, {ComponentProps} from 'react';
 import styled from 'styled-components';
 
-type Props = ComponentProps<"logohover"> & {};
+type Props = ComponentProps<"div"> & {};
 const LogoHover = () => {
     return (
         <StyledWrapper>

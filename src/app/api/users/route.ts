@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import bcrypt from "bcrypt";
 
 export async function GET() {
   const users = await prisma.user.findMany();
@@ -16,7 +17,14 @@ export async function POST(req: Request) {
     where: { user: username },
   });
 
-  if (!user || user.psw !== password) {
+  if (!user) {
+    return new Response(JSON.stringify({ error: "Invalid credentials" }), { status: 401 });
+  }
+
+  
+  const validPassword = await bcrypt.compare(password, user.psw)
+
+  if (!validPassword) {
     return new Response(JSON.stringify({ error: "Invalid credentials" }), { status: 401 });
   }
 

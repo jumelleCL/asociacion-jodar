@@ -3,7 +3,7 @@
 import React, { ComponentProps } from "react";
 import styled from "styled-components";
 
-type Props = ComponentProps<"bar"> & { children?: React.ReactNode };
+type Props = ComponentProps<"div"> & { children?: React.ReactNode };
 const Bar = ({children, ...rest}: Props) => {
     return (
         <StyledWrapper>

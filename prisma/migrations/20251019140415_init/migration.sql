@@ -11,6 +11,7 @@ CREATE TABLE "User" (
 CREATE TABLE "Animal" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
+    "description" TEXT NOT NULL,
     "age" INTEGER NOT NULL,
     "race" TEXT NOT NULL,
     "specie" TEXT NOT NULL,
