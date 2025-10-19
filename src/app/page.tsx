@@ -13,31 +13,21 @@ export default function Home() {
         <div>
             <main className="flex min-h-1/2 flex-col items-right justify-between p-24 bg-[#F6F1FB]">
                 <Summary
-                    title="CONTACTO"
-                    description="¿Tenés preguntas? ¡Contáctanos!"
+                    title="NOSOTROS"
+                    description="Resumen sobre la asociación"
                     rout="/admin/dashboard"
                 >
-                    <div className="flex overflow-y-visible gap-6 justify-center my-50 mx-20">
-                        <AnimalCard
-                            name={"gustabo"}
-                            description={"Aloooo"}
-                            isDisponible={true} 
-                            url={""}                        
-                        >                           
-                        </AnimalCard>
-                    </div>
                 </Summary>
                 
                 <div className="border-b border-gray-300 mb-6"></div>
 
                 <Summary
-                    title="NOSOTROS"
-                    description="Sobre nosotros resumen"
-                    rout="/admin/nosotros"
+                    title="ANIMALES"
+                    description="Algunos animales"
+                    rout="/admin/animales"
                 >
                     <div className="flex overflow-y-visible overflow-x-hidden gap-6 mt-10">
-                        <AnimalCarousel>
-                        </AnimalCarousel>
+                        <AnimalCarousel/>
                     </div>
                 </Summary>
 
@@ -45,7 +35,7 @@ export default function Home() {
 
                 <Summary
                     title="CONTACTO"
-                    description="¿Tenés preguntas? ¡Contactanos!"
+                    description="Contacto:"
                     rout="/admin/dashboard"
                 ></Summary>
             </main>

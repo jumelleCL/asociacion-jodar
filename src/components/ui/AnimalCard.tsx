@@ -3,6 +3,7 @@
 import React, {ComponentProps, ReactNode} from "react";
 import styled from "styled-components";
 import {useRouter} from "next/navigation";
+import * as url from "node:url";
 
 type AnimalProps = {
     name: string;
@@ -15,7 +16,7 @@ type AnimalProps = {
 const AnimalCard = ({name, description, isDisponible, children, url}: AnimalProps) => {
     const router = useRouter();
     return (
-        <StyledWrapper>
+        <StyledWrapper $backgroundUrl={url}>
             <div className="col-6 col-md-2">
                 <div className="card">
                     <div className="card-description">
@@ -37,19 +38,48 @@ const AnimalCard = ({name, description, isDisponible, children, url}: AnimalProp
 }
 
 const StyledWrapper = styled.div`
+
+    .card-description,
+    .card-button,
+    .title-row,
+    .text-title,
+    .text-body {
+        position: relative;
+        z-index: 1;
+    }
+    
     .card {
         width: 300px;
         border-radius: 20px;
-        background: #f5f5f5;
+        background: transparent;
         position: relative;
         padding: 1rem;
-        border: 2px solid #805BA6;
+        border: 3px solid #805BA6;
         transition: 0.5s ease-out;
         overflow: visible;
         aspect-ratio: 1;
         box-sizing: border-box;
     }
-
+    
+    .card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: ${({ $backgroundUrl }) => {
+            return $backgroundUrl
+                    ? `url(${$backgroundUrl}) center/cover no-repeat`
+                    : `#f5f5f5`;
+        }};
+        z-index: 0;
+        filter: grayscale(0%);
+        transition: filter 0.3s ease-out;
+        border-radius: 17px;
+        overflow: hidden;
+    }
+    
     @media (max-width: 1024px) {
         .card {
             width: 200px;
@@ -72,8 +102,7 @@ const StyledWrapper = styled.div`
             width: 120px    ;
         }
     }
-
-
+    
     .card-description {
         display: flex;
         flex-direction: column;
@@ -98,14 +127,14 @@ const StyledWrapper = styled.div`
     .box {
         display: inline-block;
         align-items: center;
-        width: 10px;
-        height: 10px;
+        width: 20px;
+        height: 20px;
         padding: 1px;
         border-radius: 50%;
     }
 
     .circle {
-        padding: 0 4px;
+        padding: 0 10px;
         display: flex;
         align-items: center;
     }
@@ -123,7 +152,7 @@ const StyledWrapper = styled.div`
         display: flex;            
         justify-content: center;   
         align-items: center;       
-        color: rgb(134, 134, 134);
+        color: black;
         margin: 0;
         text-align: center;
         opacity: 0;
@@ -153,6 +182,11 @@ const StyledWrapper = styled.div`
         rgba(128, 91, 166, 0.5) 5px 10px 15px;
     }
 
+    .card:hover::before {
+        filter: blur(2px) grayscale(20%);
+        overflow: hidden;
+    }
+    
     .card:hover .card-button {
         transform: translate(-50%, 50%);
         opacity: 1;
