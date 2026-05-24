@@ -295,7 +295,7 @@ export default function Home() {
                                         src="/logo.jpg"
                                         alt={`Asociación Felinos Protegidos - 7 Razones`}
                                         fill
-                                        className="w-full h-full object-cover object-[center_-20px]"
+                                        className="w-full h-full object-cover object-center sm:object-[center_-8px]"
                                     />
                                 </div>
                             </div>
